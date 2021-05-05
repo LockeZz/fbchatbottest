@@ -32,9 +32,13 @@ Facebook::Messenger::Bot.on :message do |message|
 end
 
 Facebook::Messenger::Bot.on :postback do |postback|
-    if postback.payload == 'EXTERMINATE'
-        puts "Human #{postback.recipient} marked for ExTerminaTioN"
-    else
-        puts "I know.. But I hate you.."
+    Bot.on :reaction do |message|
+        if postback.payload == 'EXTERMINATE'
+            puts "Human #{postback.recipient} marked for ExTerminaTioN"
+            message.reply( text: 'You are marked for ExTerminaTion')
+        else
+            puts "I know.. But I hate you.."
+            message.reply( text: "#{message.emoji}. Thanks, but i still hate you.")
+        end
     end
 end
