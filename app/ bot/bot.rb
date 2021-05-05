@@ -2,7 +2,7 @@ require 'facebook/messenger'
 
 include Facebook::Messenger 
 
-SUBSCRIBED_PARAMS = ['messages', 'messaging_postbacks']
+SUBSCRIBED_PARAMS = ['messages', 'messaging_postbacks', 'messaging_optins', 'messaging_deliveries', 'messag']
 
 Facebook::Messenger::Subscriptions.subscribe(
     access_token: ENV["ACCESS_TOKEN"],
@@ -25,20 +25,19 @@ Facebook::Messenger::Bot.on :message do |message|
                     ]
                 }
             }
-        )  
+        )
     else
         message.reply(text: 'Hello human!')
     end
-end
 
-Facebook::Messenger::Bot.on :postback do |postback|
-    Bot.on :reaction do |message|
+    Facebook::Messenger::Bot.on :postback do |postback|
         if postback.payload == 'EXTERMINATE'
             puts "Human #{postback.recipient} marked for ExTerminaTioN"
-            message.reply( text: 'You are marked for ExTerminaTion')
-        else
+            message.reply(text: "You are marked for ExTerminaTioN")
+        elsif postback.payload == 'HARMLESS'
             puts "I know.. But I hate you.."
-            message.reply( text: "#{message.emoji}. Thanks, but i still hate you.")
+            message.reply(text: "I know.. But I hate you...")
         end
     end
 end
+
