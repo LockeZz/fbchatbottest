@@ -30,3 +30,11 @@ Facebook::Messenger::Bot.on :message do |message|
         message.reply(text: 'Hello human!')
     end
 end
+
+Facebook::Messenger::Bot.on :postback do |postback|
+    if postbacl.payload == 'HARMLESS'
+        puts "Human #{postback.recipient} marked for ExTerminaTioN"
+    else
+        puts "I know.. But I hate you.."
+    end
+end
