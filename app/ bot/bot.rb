@@ -2,7 +2,7 @@ require 'facebook/messenger'
 
 include Facebook::Messenger 
 
-SUBSCRIBED_PARAMS = ['messages']
+SUBSCRIBED_PARAMS = ['messages', 'messaging_postbacks']
 
 Facebook::Messenger::Subscriptions.subscribe(
     access_token: ENV["ACCESS_TOKEN"],
