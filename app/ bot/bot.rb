@@ -32,7 +32,7 @@ Facebook::Messenger::Bot.on :message do |message|
 end
 
 Facebook::Messenger::Bot.on :postback do |postback|
-    if postbacl.payload == 'HARMLESS'
+    if postback.payload == 'EXTERMINATE'
         puts "Human #{postback.recipient} marked for ExTerminaTioN"
     else
         puts "I know.. But I hate you.."
